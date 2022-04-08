@@ -97,3 +97,7 @@ input {
   padding: 0;
   width: 100px;
 }
+
+.error-message {
+  color: red;
+}
