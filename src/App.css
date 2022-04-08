@@ -5,10 +5,27 @@ body {
   flex-direction: column;
 }
 
-.header {
+header {
   display: flex;
   justify-content: center;
   margin: 50px;
+}
+
+label, input {
+  display: block;
+  width: 100%;
+}
+
+label {
+  color: white;
+  margin-top: 20px;
+}
+
+input {
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  outline: none;
 }
 
 .klever-logo {
@@ -45,4 +62,38 @@ body {
 
 .add-token-btn {
   background-color: rgb(168, 12, 168);
+}
+
+.add-token-form {
+  margin-left: 5%;
+  margin-top: 30px;
+}
+
+.add-form-top {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-title {
+  color: white;
+}
+
+.back-btn {
+  background-color: grey;
+  height: 35px;
+  padding: 0;
+  width: 100px;
+}
+
+.add-form-bottom {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.save-btn {
+  height: 35px;
+  padding: 0;
+  width: 100px;
 }
