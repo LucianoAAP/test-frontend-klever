@@ -8,7 +8,7 @@ const App = () => (
   <Provider>
     <Routes>
       <Route exact path="/add" element={ <AddToken /> } />
-      <Route exact path="/edit" element={ <EditToken /> } />
+      <Route exact path="/edit/:id" element={ <EditToken /> } />
       <Route exact path="/" element={ <Home /> } />
     </Routes>
   </Provider>

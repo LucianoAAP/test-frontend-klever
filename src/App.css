@@ -34,7 +34,7 @@ input {
 }
 
 .shooting-star {
-  color: yellow;
+  fill: yellow;
   height: 50px;
   width: 50px;
 }
@@ -58,6 +58,7 @@ input {
   align-items: center;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 50px;
 }
 
 .add-token-btn {
@@ -77,6 +78,7 @@ input {
 
 .add-title {
   color: white;
+  margin-left: 10px;
 }
 
 .back-btn {
@@ -100,4 +102,38 @@ input {
 
 .error-message {
   color: red;
+}
+
+.table-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tokens-field-title, .balance-field-title, .token-info {
+  color: white;
+}
+
+.tokens-field-title {
+  margin-left: 42px;
+}
+
+.table-line-start {
+  align-items: center;
+  display: flex;
+}
+
+.edit-btn {
+  align-items: center;
+  background: none;
+  border: none;
+  display: flex;
+  height: 20px;
+  margin-right: 10px;
+  width: 32px;
+}
+
+.edit-icon {
+  fill: white;
+  height: 20px;
+  width: 20px;
 }
