@@ -1,8 +1,10 @@
 import React from 'react';
+import { Header, HomeField } from '../components';
 
 const Home = () => (
   <div>
-    <img src="../../assets/logo.svg" alt="logo" />
+    <Header />
+    <HomeField />
   </div>
 );
 
