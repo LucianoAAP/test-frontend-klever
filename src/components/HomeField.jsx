@@ -9,6 +9,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const HomeField = () => {
   const { tokens } = useContext(AppContext);
   const navigate = useNavigate();
+  const tokensStorage = JSON.parse(localStorage.getItem('tokens'));
+  const tokenList = tokensStorage || tokens;
 
   return (
     <main className="container">
@@ -26,7 +28,7 @@ const HomeField = () => {
         <h5 className="tokens-field-title">Tokens</h5>
         <h5 className="balance-field-title">Balance</h5>
       </div>
-      { tokens.map(({ token, balance }, index) => (
+      { tokenList.map(({ token, balance }, index) => (
         <div className="table-line" key={ index }>
           <div className="table-line-start">
             <button

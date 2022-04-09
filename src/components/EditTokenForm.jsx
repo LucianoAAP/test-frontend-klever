@@ -8,9 +8,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const EditTokenForm = () => {
   const { tokens, setTokens } = useContext(AppContext);
+  const tokensStorage = JSON.parse(localStorage.getItem('tokens'));
+  const tokenList = tokensStorage || tokens;
   const { id } = useParams();
-  const [token, setToken] = useState(tokens[id].token);
-  const [balance, setBalance] = useState(tokens[id].balance);
+  const [token, setToken] = useState(tokenList[id].token);
+  const [balance, setBalance] = useState(tokenList[id].balance);
   const [repeatedToken, setRepeatedToken] = useState(false);
   const [emptyToken, setEmptyToken] = useState(false);
   const [emptyBalance, setEmptyBalance] = useState(false);
@@ -18,7 +20,7 @@ const EditTokenForm = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const otherTokens = tokens.filter((obj) => obj.token !== token);
+    const otherTokens = tokenList.filter((obj) => obj.token !== token);
     const tokenIsRepeated = otherTokens.some((obj) => obj.token === token);
 
     if (tokenIsRepeated || token === '' || balance === '') {
@@ -26,7 +28,7 @@ const EditTokenForm = () => {
     } else {
       setEntriesAreValid(true);
     }
-  }, [token, balance, tokens]);
+  }, [token, balance, tokenList]);
 
   const handleChange = ({ target: { name, value } }) => {
     if (name === 'token-input') setToken(value);
@@ -34,7 +36,7 @@ const EditTokenForm = () => {
   };
 
   const handleErrorMessages = () => {
-    const otherTokens = tokens.filter((obj) => obj.token !== token);
+    const otherTokens = tokenList.filter((obj) => obj.token !== token);
     const tokenIsRepeated = otherTokens.some((obj) => obj.token === token);
 
     if (tokenIsRepeated) {
@@ -56,8 +58,9 @@ const EditTokenForm = () => {
 
   const handleSave = () => {
     if (entriesAreValid) {
-      const newTokens = [...tokens];
+      const newTokens = [...tokenList];
       newTokens[id] = { token, balance };
+      localStorage.setItem('tokens', JSON.stringify(newTokens));
       setTokens(newTokens);
       return navigate('/');
     }
@@ -77,7 +80,8 @@ const EditTokenForm = () => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        const newTokens = tokens.filter((obj) => obj !== tokens[id]);
+        const newTokens = tokenList.filter((obj) => obj !== tokenList[id]);
+        localStorage.setItem('tokens', JSON.stringify(newTokens));
         setTokens(newTokens);
         navigate('/');
       }

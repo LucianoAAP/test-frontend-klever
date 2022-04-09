@@ -14,16 +14,18 @@ const AddTokenForm = () => {
   const [emptyBalance, setEmptyBalance] = useState(false);
   const [entriesAreValid, setEntriesAreValid] = useState(false);
   const navigate = useNavigate();
+  const tokensStorage = JSON.parse(localStorage.getItem('tokens'));
+  const tokenList = tokensStorage || tokens;
 
   useEffect(() => {
-    const tokenIsRepeated = tokens.some((obj) => obj.token === token);
+    const tokenIsRepeated = tokenList.some((obj) => obj.token === token);
 
     if (tokenIsRepeated || token === '' || balance === '') {
       setEntriesAreValid(false);
     } else {
       setEntriesAreValid(true);
     }
-  }, [token, balance, tokens]);
+  }, [token, balance, tokenList]);
 
   const handleChange = ({ target: { name, value } }) => {
     if (name === 'token-input') setToken(value);
@@ -31,7 +33,7 @@ const AddTokenForm = () => {
   };
 
   const handleErrorMessages = () => {
-    const tokenIsRepeated = tokens.some((obj) => obj.token === token);
+    const tokenIsRepeated = tokenList.some((obj) => obj.token === token);
 
     if (tokenIsRepeated) {
       setRepeatedToken(true);
@@ -52,7 +54,8 @@ const AddTokenForm = () => {
 
   const handleSave = () => {
     if (entriesAreValid) {
-      const newTokens = [...tokens, { token, balance }];
+      const newTokens = [...tokenList, { token, balance }];
+      localStorage.setItem('tokens', JSON.stringify(newTokens));
       setTokens(newTokens);
       return navigate('/');
     }
