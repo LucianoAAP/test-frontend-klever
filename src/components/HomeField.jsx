@@ -7,8 +7,8 @@ import { ReactComponent as EditIcon } from '../assets/edit-icon.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const HomeField = () => {
-  const navigate = useNavigate();
   const { tokens } = useContext(AppContext);
+  const navigate = useNavigate();
 
   return (
     <main className="container">

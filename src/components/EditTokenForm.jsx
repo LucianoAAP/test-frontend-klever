@@ -1,22 +1,25 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 import AppContext from '../context/AppContext';
 import WishWalletTitle from './WishWalletTitle';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const EditTokenForm = () => {
-  const [token, setToken] = useState('');
-  const [balance, setBalance] = useState('');
+  const { tokens, setTokens } = useContext(AppContext);
+  const { id } = useParams();
+  const [token, setToken] = useState(tokens[id].token);
+  const [balance, setBalance] = useState(tokens[id].balance);
   const [repeatedToken, setRepeatedToken] = useState(false);
   const [emptyToken, setEmptyToken] = useState(false);
   const [emptyBalance, setEmptyBalance] = useState(false);
-  const [entriesAreValid, setEntriesAreValid] = useState(false);
+  const [entriesAreValid, setEntriesAreValid] = useState(true);
   const navigate = useNavigate();
-  const { tokens, setTokens } = useContext(AppContext);
 
   useEffect(() => {
-    const tokenIsRepeated = tokens.some((obj) => obj.token === token);
+    const otherTokens = tokens.filter((obj) => obj.token !== token);
+    const tokenIsRepeated = otherTokens.some((obj) => obj.token === token);
 
     if (tokenIsRepeated || token === '' || balance === '') {
       setEntriesAreValid(false);
@@ -31,7 +34,8 @@ const EditTokenForm = () => {
   };
 
   const handleErrorMessages = () => {
-    const tokenIsRepeated = tokens.some((obj) => obj.token === token);
+    const otherTokens = tokens.filter((obj) => obj.token !== token);
+    const tokenIsRepeated = otherTokens.some((obj) => obj.token === token);
 
     if (tokenIsRepeated) {
       setRepeatedToken(true);
@@ -52,11 +56,32 @@ const EditTokenForm = () => {
 
   const handleSave = () => {
     if (entriesAreValid) {
-      const newTokens = [...tokens, { token, balance }];
+      const newTokens = [...tokens];
+      newTokens[id] = { token, balance };
       setTokens(newTokens);
       return navigate('/');
     }
     return handleErrorMessages();
+  };
+
+  const handleRemove = () => {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Are you sure you want to remove this token?',
+      showCancelButton: true,
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      customClass: {
+        cancelButton: 'cancel-button',
+        confirmButton: 'confirm-button',
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const newTokens = tokens.filter((obj) => obj !== tokens[id]);
+        setTokens(newTokens);
+        navigate('/');
+      }
+    });
   };
 
   return (
@@ -96,7 +121,13 @@ const EditTokenForm = () => {
         </label>
         { emptyBalance && <p className="error-message">Balance field is required</p> }
         <div className="edit-form-bottom">
-          <Button className="remove-btn" type="button">Remove</Button>
+          <Button
+            className="remove-btn"
+            type="button"
+            onClick={ handleRemove }
+          >
+            Remove
+          </Button>
           <Button className="save-btn" type="button" onClick={ handleSave }>
             Save
           </Button>

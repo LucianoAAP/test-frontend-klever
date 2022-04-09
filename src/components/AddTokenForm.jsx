@@ -6,6 +6,7 @@ import WishWalletTitle from './WishWalletTitle';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AddTokenForm = () => {
+  const { tokens, setTokens } = useContext(AppContext);
   const [token, setToken] = useState('');
   const [balance, setBalance] = useState('');
   const [repeatedToken, setRepeatedToken] = useState(false);
@@ -13,7 +14,6 @@ const AddTokenForm = () => {
   const [emptyBalance, setEmptyBalance] = useState(false);
   const [entriesAreValid, setEntriesAreValid] = useState(false);
   const navigate = useNavigate();
-  const { tokens, setTokens } = useContext(AppContext);
 
   useEffect(() => {
     const tokenIsRepeated = tokens.some((obj) => obj.token === token);
