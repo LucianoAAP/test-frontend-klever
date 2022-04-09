@@ -1,16 +1,12 @@
-import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import { Button } from 'react-bootstrap';
-import AppContext from '../context/AppContext';
+import { useHomeField } from '../hooks';
 import WishWalletTitle from './WishWalletTitle';
 import { ReactComponent as EditIcon } from '../assets/edit-icon.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const HomeField = () => {
-  const { tokens } = useContext(AppContext);
-  const navigate = useNavigate();
-  const tokensStorage = JSON.parse(localStorage.getItem('tokens'));
-  const tokenList = tokensStorage || tokens;
+  const { tokenList, navigate } = useHomeField();
 
   return (
     <main className="container">
