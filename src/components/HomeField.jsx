@@ -29,6 +29,7 @@ const HomeField = () => {
           <div className="table-line-start">
             <button
               className="edit-btn"
+              data-testid={ `edit-btn-${index}` }
               type="button"
               onClick={ () => navigate(`/edit/${index}`) }
             >
