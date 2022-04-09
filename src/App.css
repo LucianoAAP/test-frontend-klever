@@ -65,18 +65,18 @@ input {
   background-color: rgb(168, 12, 168);
 }
 
-.add-token-form {
+.add-token-form, .edit-token-form {
   margin-left: 5%;
   margin-top: 30px;
 }
 
-.add-form-top {
+.add-form-top, .edit-form-top {
   align-items: center;
   display: flex;
   justify-content: space-between;
 }
 
-.add-title {
+.add-title, .edit-title {
   color: white;
   margin-left: 10px;
 }
@@ -136,4 +136,18 @@ input {
   fill: white;
   height: 20px;
   width: 20px;
+}
+
+.edit-form-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.remove-btn {
+  background-color: rgba(255, 0, 0, 0.774);
+  border: none;
+  height: 35px;
+  padding: 0;
+  width: 100px;
 }
