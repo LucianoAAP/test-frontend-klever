@@ -49,7 +49,7 @@ const EditTokenForm = () => {
             name="balance-input"
             data-testid="balance-input"
             type="number"
-            lang="en-US"
+            step="0.01"
             value={ balance }
             onChange={ handleChange }
           />
