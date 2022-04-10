@@ -34,7 +34,8 @@ describe('Tests home page', () => {
       expect(editBtn).toBeInTheDocument();
       const tokenName = screen.getByText(token);
       expect(tokenName).toBeInTheDocument();
-      const tokenBalance = screen.getByText(balance);
+      const tokenBalance = screen
+        .getByText(Number(balance).toLocaleString('en', { minimumFractionDigits: 2 }));
       expect(tokenBalance).toBeInTheDocument();
     });
     localStorage.clear();

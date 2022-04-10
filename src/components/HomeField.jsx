@@ -37,7 +37,9 @@ const HomeField = () => {
             </button>
             <h2 className="token-info">{ token }</h2>
           </div>
-          <h2 className="token-info">{ balance }</h2>
+          <h2 className="token-info">
+            { Number(balance).toLocaleString('en', { minimumFractionDigits: 2 }) }
+          </h2>
         </div>
       )) }
     </main>
