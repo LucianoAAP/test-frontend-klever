@@ -4,9 +4,9 @@ import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 const tokens = [
-  { token: 'KLV', balance: 10250.50 },
-  { token: 'DVK', balance: 50250.71 },
-  { token: 'KFI', balance: 10 },
+  { token: 'KLV', balance: '10250.50' },
+  { token: 'DVK', balance: '50250.71' },
+  { token: 'KFI', balance: '10' },
 ];
 
 describe('Tests add token page', () => {
@@ -61,6 +61,8 @@ describe('Tests add token page', () => {
       const emptyBalanceError = screen.queryByText('Balance field is required');
       expect(emptyTokenError).toBeInTheDocument();
       expect(emptyBalanceError).toBeInTheDocument();
+      const storage = JSON.parse(localStorage.getItem('tokens'));
+      expect(storage).toBeNull();
     });
 
     it('Repeated token error is shown', () => {
@@ -79,6 +81,8 @@ describe('Tests add token page', () => {
       expect(location.pathname).toBe('/add');
       const repeatedTokenError = screen.getByText('Token already in wish wallet');
       expect(repeatedTokenError).toBeInTheDocument();
+      const storage = JSON.parse(localStorage.getItem('tokens'));
+      expect(storage).toStrictEqual(tokens);
       localStorage.clear();
     });
 

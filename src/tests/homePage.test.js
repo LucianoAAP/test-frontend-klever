@@ -4,9 +4,9 @@ import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 const tokens = [
-  { token: 'KLV', balance: 10250.50 },
-  { token: 'DVK', balance: 50250.71 },
-  { token: 'KFI', balance: 10 },
+  { token: 'KLV', balance: '10250.50' },
+  { token: 'DVK', balance: '50250.71' },
+  { token: 'KFI', balance: '10' },
 ];
 
 describe('Tests home page', () => {
