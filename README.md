@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# The Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was developed for the technical challenge of the Klever company's selection process. It's "wish wallet" for cryptocurrency tokens made with React. One can add the tokens, with their respective balances, to the wish wallet, edit them, as well as delete them.
 
-## Available Scripts
+# Features
 
-In the project directory, you can run:
+- Home page displays the current tokens in the wish wallet
+- Add token page can add tokens to the wallet
+- Edit token page can edit the token data, as well as remove it
+- Error messages are shown when the token data is not valid
+- The data is stored in local storage
+- Automated tests covering more than 90% of lines in the "src" folder
 
-### `npm start`
+# Starting
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Pré-requisites
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This application requires the "NPM" package
 
-### `npm test`
+## Instalation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. First, clone the repository:
+- `git clone git@github.com:LucianoAAP/test-frontend-klever.git`
+2. Then, enter the repository:
+- `cd test-frontend-klever`
+3. Finally, install dependencies:
+- `npm install`
 
-### `npm run build`
+## Starting the application
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Run the command `npm start`
+2. Wait until the code is compiled and the home page is loaded in your browser
+3. Start navigating
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Testing the application
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- To run tests, use the command `npm test`
+- To run the tests and see the testing coverage report, use `npm run test:coverage`
 
-### `npm run eject`
+# Next steps
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Create accounts and login features
+- Create a back-end application to fetch and store the data for different accounts
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Contact me
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Luciano Almeida
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Linkedin: https://www.linkedin.com/in/lucianoaap/
+- Github: https://www.linkedin.com/in/lucianoaap/
+- Email: lucianoalmeidaap@gmail.com
