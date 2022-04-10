@@ -49,10 +49,10 @@ describe('Tests home page', () => {
     fireEvent.click(backBtn);
   });
 
-  it('Tests edit button', async () => {
-    window.localStorage.setItem('tokens', JSON.stringify(tokens));
+  it('Tests edit button', () => {
+    localStorage.setItem('tokens', JSON.stringify(tokens));
     renderWithRouter(<App />);
-    const editBtn = await screen.findByTestId('edit-btn-0');
+    const editBtn = screen.getByTestId('edit-btn-0');
     fireEvent.click(editBtn);
     expect(location.pathname).toBe('/edit/0');
     localStorage.clear();

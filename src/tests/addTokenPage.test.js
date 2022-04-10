@@ -32,5 +32,82 @@ describe('Tests add token page', () => {
     expect(balanceLabel).toBeInTheDocument();
     const balanceInput = screen.getByTestId('balance-input');
     expect(balanceInput).toBeInTheDocument();
+    const saveBtn = screen.getByText('Save');
+    expect(saveBtn).toBeInTheDocument();
+  });
+
+  it('Tests back button', () => {
+    renderWithRouter(<App />);
+    const addTokenBtn = screen.getByText('Add Token');
+    fireEvent.click(addTokenBtn);
+    const backBtn = screen.getByText('Back');
+    fireEvent.click(backBtn);
+    expect(location.pathname).toBe('/');
+  });
+
+  describe('Tests save button', () => {
+    it('Empty field error messages are shown', () => {
+      renderWithRouter(<App />);
+      const addTokenBtn = screen.getByText('Add Token');
+      fireEvent.click(addTokenBtn);
+      const emptyTokenErrorGetter = screen.queryByText('Token field is required');
+      const emptyBalanceErrorGetter = screen.queryByText('Balance field is required');
+      expect(emptyTokenErrorGetter).not.toBeInTheDocument();
+      expect(emptyBalanceErrorGetter).not.toBeInTheDocument();
+      const saveBtn = screen.getByText('Save');
+      fireEvent.click(saveBtn);
+      expect(location.pathname).toBe('/add');
+      const emptyTokenError = screen.getByText('Token field is required');
+      const emptyBalanceError = screen.queryByText('Balance field is required');
+      expect(emptyTokenError).toBeInTheDocument();
+      expect(emptyBalanceError).toBeInTheDocument();
+    });
+
+    it('Repeated token error is shown', () => {
+      localStorage.setItem('tokens', JSON.stringify(tokens));
+      renderWithRouter(<App />);
+      const addTokenBtn = screen.getByText('Add Token');
+      fireEvent.click(addTokenBtn);
+      const repeatedTokenErrorGetter = screen.queryByText('Token already in wish wallet');
+      expect(repeatedTokenErrorGetter).not.toBeInTheDocument();
+      const tokenInput = screen.getByTestId('token-input');
+      const balanceInput = screen.getByTestId('balance-input');
+      fireEvent.change(tokenInput, { target: { value: 'KLV' } })
+      fireEvent.change(balanceInput, { target: { value: 10250.50 } });
+      const saveBtn = screen.getByText('Save');
+      fireEvent.click(saveBtn);
+      expect(location.pathname).toBe('/add');
+      const repeatedTokenError = screen.getByText('Token already in wish wallet');
+      expect(repeatedTokenError).toBeInTheDocument();
+      localStorage.clear();
+    });
+
+    it('Saves data in local storage', () => {
+      renderWithRouter(<App />);
+      const addTokenBtn = screen.getByText('Add Token');
+      fireEvent.click(addTokenBtn);
+      const tokenInput = screen.getByTestId('token-input');
+      const balanceInput = screen.getByTestId('balance-input');
+      fireEvent.change(tokenInput, { target: { value: 'KLV' } })
+      fireEvent.change(balanceInput, { target: { value: '10250.50' } });
+      const saveBtn = screen.getByText('Save');
+      fireEvent.click(saveBtn);
+      const storage = JSON.parse(localStorage.getItem('tokens'));
+      expect(storage).toStrictEqual([{ token: 'KLV', balance: '10250.50' }]);
+      localStorage.clear();
+    });
+
+    it('Redirects to home', () => {
+      renderWithRouter(<App />);
+      const addTokenBtn = screen.getByText('Add Token');
+      fireEvent.click(addTokenBtn);
+      const tokenInput = screen.getByTestId('token-input');
+      const balanceInput = screen.getByTestId('balance-input');
+      fireEvent.change(tokenInput, { target: { value: 'KLV' } })
+      fireEvent.change(balanceInput, { target: { value: '10250.50' } });
+      const saveBtn = screen.getByText('Save');
+      fireEvent.click(saveBtn);
+      expect(location.pathname).toBe('/');
+    });
   });
 });
