@@ -69,8 +69,8 @@ const useEditTokenForm = () => {
       icon: 'warning',
       title: 'Are you sure you want to remove this token?',
       showCancelButton: true,
-      cancelButtonText: 'No',
-      confirmButtonText: 'Yes',
+      cancelButtonText: 'Cancel',
+      confirmButtonText: 'Confirm',
       customClass: {
         cancelButton: 'cancel-button',
         confirmButton: 'confirm-button',

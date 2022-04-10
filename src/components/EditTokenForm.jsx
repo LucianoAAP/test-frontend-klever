@@ -35,6 +35,7 @@ const EditTokenForm = () => {
           Token
           <input
             name="token-input"
+            data-testid="token-input"
             type="text"
             value={ token }
             onChange={ handleChange }
@@ -46,6 +47,7 @@ const EditTokenForm = () => {
           Balance
           <input
             name="balance-input"
+            data-testid="balance-input"
             type="number"
             lang="en-US"
             value={ balance }
