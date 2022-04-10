@@ -6,3 +6,5 @@ setupTests.js
 src/index.js
 build/*
 jest.config.js
+node_modules
+coverage
